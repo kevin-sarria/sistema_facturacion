@@ -1,0 +1,16 @@
+{
+    "name": "estaduardo/backend",
+    "description": "Backend Api Para sistema de facturacion de la Papeleria Universal",
+    "autoload": {
+        "psr-4": {
+            "Estaduardo\\Backend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kevin Sarria",
+            "email": "reysabueso256@gmail.com"
+        }
+    ],
+    "require": {}
+}

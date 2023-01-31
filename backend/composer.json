@@ -3,7 +3,10 @@
     "description": "Backend Api Para sistema de facturacion de la Papeleria Universal",
     "autoload": {
         "psr-4": {
-            "Estaduardo\\Backend\\": "src/"
+            "Estaduardo\\Backend\\": "src/",
+            "Controllers\\": "./controllers",
+            "Model\\": "./models/",
+            "Classes\\": "./classes"
         }
     },
     "authors": [

@@ -16,7 +16,7 @@ export const ForgotPassword = () => {
             </div>
 
             <div className="text-right mb-5 text-indigo-600 hover:text-indigo-700">
-              <Link to="/">¿Ya tienes una cuenta? Iniciar Sesión</Link>
+              <Link to="/auth/login">¿Ya tienes una cuenta? Iniciar Sesión</Link>
             </div>
 
             <input type="submit" value="Enviar Instrucciones" className="w-full text-xl p-3 rounded-sm bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer" />

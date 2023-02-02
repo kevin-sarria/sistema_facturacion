@@ -20,7 +20,7 @@ export const LoginPage = () => {
             </div>
 
             <div className="text-right mb-5 text-indigo-600 hover:text-indigo-700">
-              <Link to="/recuperar-cuenta">¿Has Olvidado tu contraseña?</Link>
+              <Link to="/auth/forgot-password">¿Has Olvidado tu contraseña?</Link>
             </div>
 
             <input type="submit" value="Entrar" className="w-full text-xl p-3 rounded-sm bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer" />

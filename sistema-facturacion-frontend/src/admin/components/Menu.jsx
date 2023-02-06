@@ -1,13 +1,21 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
 
 
 export const Menu = ({title}) => {
 
-    const onClickMenuIcon = () => {
+  const [ open, setOpen ] = useState(true);
 
-        console.log('Has dado click en el icono del menu');
+  const onClickMenuIcon = () => {
 
+    if( open ) {
+      localStorage.setItem('navbarOpen', false);
+      setOpen(false);
+    } else {
+      localStorage.setItem('navbarOpen', true);
+      setOpen(true);
     }
+
+  }
 
   return (
     <div className='flex items-center gap-x-5 mt-10 ml-10'>

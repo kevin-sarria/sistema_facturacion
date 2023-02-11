@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import { Dashboard } from '../admin/';
 import { useCheckAuth } from '../hooks';
 import { LoginPage, ForgotPassword } from '../auth';
+import { Inventario } from '../admin/inventario';
 
 export const AppRouter = () => {
 
@@ -26,6 +27,7 @@ export const AppRouter = () => {
           ? (
             <>
               <Route path="/" element={ <Dashboard /> } />
+              <Route path="/inventario" element={ <Inventario /> } />
 
               <Route path="/*" element={ <Navigate to='/' /> } />
             </>

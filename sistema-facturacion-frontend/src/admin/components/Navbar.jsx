@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   return (
 
-    <header className={ `hidden md:block sm:w-72 shadow-xl h-screen p-5 overflow-hidden transition-all ${'hola'}` }>
+    <header className={ `hidden lg:block sm:w-72 shadow-xl h-screen p-5 overflow-hidden transition-all ${'hola'}` }>
 
             <div className='flex mb-5'>
                 <img src="https://cdn-icons-png.flaticon.com/128/9205/9205233.png" alt="Icono Admin" className='w-24' />

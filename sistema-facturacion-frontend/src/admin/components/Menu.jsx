@@ -1,7 +1,7 @@
 export const Menu = ({title}) => {
 
   return (
-    <div className='flex items-center gap-x-5 mt-10 ml-10'>
+    <div className='mt-10 w-100 text-center lg:text-left px-10'>
       <h2 className='text-5xl text-blue-400 font-bold'>{ title }</h2>
     </div>
   )

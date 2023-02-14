@@ -2,7 +2,7 @@
 
 export const Paginador = () => {
   return (
-    <div className="flex justify-end w-10/12 mx-auto mt-6">
+    <div className="flex justify-center lg:justify-end w-10/12 mx-auto mt-6">
         <div className="flex w-fit">
 
             <div 

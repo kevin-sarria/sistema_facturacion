@@ -19,7 +19,7 @@ export const Table = ({ data = [] }) => {
   titulos = titulos.map((item) => item.replace("_", " "));
 
   return (
-    <div className="flex max-w-full overflow-auto mx-auto">
+    <div className="flex max-w-full overflow-auto mx-2 xl:mx-auto">
       <table className="w-5/6 mx-auto mt-6 justify-center">
         <thead className="border border-spacing-2 text-center">
           <tr className="bg-blue-400 text-white">

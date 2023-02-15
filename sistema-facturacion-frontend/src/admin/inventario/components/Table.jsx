@@ -1,5 +1,9 @@
 export const Table = ({ data = [] }) => {
 
+  if( data.length < 1 ) {
+    return;
+  }
+
   let titulos = Object.keys(data[0]);
   
   const datos = data.map( ( dato, index) => 

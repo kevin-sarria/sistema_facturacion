@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react"
+import { useSelector } from 'react-redux';
 
 
 export const Paginador = () => {
+
+    const [ newData, setNewData ] = useState([]);
+
+    const { data } = useSelector( state => state.dashboard );
+
+    useEffect( () => {
+        setNewData( data );
+    }, [data] );
+
+    if( newData.length <= 10 ) {
+        return;
+    }
+
+
   return (
     <div className="flex justify-center lg:justify-end w-10/12 mx-auto mt-6">
         <div className="flex w-fit">

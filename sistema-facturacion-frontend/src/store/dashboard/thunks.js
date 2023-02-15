@@ -1,7 +1,11 @@
-import { loadData } from "./";
+import { loadData, notLoadData } from "./";
 
-export const loadingData = () => {
-    return ( dispatch ) => {
-        dispatch( loadData() );
+export const loadingData = ( data = [] ) => {
+    return async( dispatch ) => {
+        
+        if(data.length < 1) return dispatch(notLoadData());
+
+        dispatch( loadData(data) );
+
     }
 }

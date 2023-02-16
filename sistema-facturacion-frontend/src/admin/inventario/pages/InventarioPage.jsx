@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Menu } from '../../'
 import { Buscador, Paginador } from '../../components';
-import { Table } from '../components';
+import { Table } from '../../components';
 
 export const InventarioPage = () => {
 
@@ -14,7 +14,7 @@ export const InventarioPage = () => {
     setNewData(data);
   }, [isLoading] );
 
-  if( newData.length < 1 ) {
+  if( newData.length < 1 || isLoading ) {
     return <div className="m-auto custom-loader"></div>;
   }
 

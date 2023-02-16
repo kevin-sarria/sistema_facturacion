@@ -62,6 +62,7 @@ const data = [
   //  { id: 53, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700},
 ];
 
+
 export const Inventario = () => {
 
   const dispatch = useDispatch();

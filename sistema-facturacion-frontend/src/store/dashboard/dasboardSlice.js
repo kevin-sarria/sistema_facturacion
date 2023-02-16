@@ -5,7 +5,8 @@ export const dashboardSlice = createSlice({
     initialState: {
         data: [],
         isLoading: true,
-        page: "" //window.location.pathname
+        page: "", //window.location.pathname
+        haveError: null
     },
     reducers: {
         loadData: (state, { payload }) => {
@@ -17,8 +18,21 @@ export const dashboardSlice = createSlice({
             state.data = [],
             state.isLoading = true,
             state.page = window.location.pathname
+        },
+        loading: (state) => {
+            state.isLoading = true,
+            state.haveError = null
+        },
+        notLoading: (state, {payload}) => {
+            state.isLoading = false,
+            state.haveError = payload
+        },
+        dataFound: ( state, { payload } ) => {
+            state.data = payload,
+            state.isLoading = false,
+            state.page = window.location.pathname
         }
     },
 });
 
-export const { loadData, notLoadData } = dashboardSlice.actions;
+export const { loadData, notLoading, loading, notLoadData, dataFound } = dashboardSlice.actions;

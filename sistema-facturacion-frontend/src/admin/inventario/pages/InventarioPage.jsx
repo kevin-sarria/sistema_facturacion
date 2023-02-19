@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Menu } from '../../'
-import { Buscador, Paginador } from '../../components';
-import { Table } from '../../components';
+import { Buscador, Paginador, NuevoRegistro, Table, Alerta } from '../../components';
 
 export const InventarioPage = () => {
 
@@ -14,21 +13,34 @@ export const InventarioPage = () => {
     setNewData(data);
   }, [isLoading] );
 
-  if( newData.length < 1 || isLoading ) {
+  // newData.length < 1 || 
+
+  // Falta un apartado que, cuando la data este vacia, aparezca un mensaje para registrar nuevos datos
+
+  if( isLoading ) {
     return <div className="m-auto custom-loader"></div>;
   }
 
   return (
-    <div className='flex-1 max-h-screen overflow-auto pb-40'>
+    <section className='flex-1 h- max-h-screen overflow-auto pb-5'>
 
       <Menu title='Inventario' />
 
-      <Buscador />
+      {
+        newData.length < 1 ? <Alerta /> : <>
+        
+        <Buscador />
 
-      <Table data={data} />
+        <Table data={data} />
+  
+        <Paginador />
+        
+        </>
 
-      <Paginador />
+      }
 
-    </div>
+      <NuevoRegistro link="/registrar-entrada" />
+
+    </section>
   )
 }

@@ -4,6 +4,7 @@ export const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState: {
         data: [],
+        dataSearch: [],
         isLoading: true,
         page: "", //window.location.pathname
         haveError: null
@@ -14,25 +15,30 @@ export const dashboardSlice = createSlice({
             state.isLoading = false,
             state.page = window.location.pathname
         },
-        notLoadData: ( state ) => {
+        notLoadData: ( state, {payload} ) => {
             state.data = [],
-            state.isLoading = true,
-            state.page = window.location.pathname
+            state.isLoading = false,
+            state.page = window.location.pathname,
+            state.haveError = payload
         },
         loading: (state) => {
             state.isLoading = true,
             state.haveError = null
         },
         notLoading: (state, {payload}) => {
+            state.dataSearch = [],
             state.isLoading = false,
             state.haveError = payload
         },
         dataFound: ( state, { payload } ) => {
-            state.data = payload,
+            state.dataSearch = payload,
             state.isLoading = false,
             state.page = window.location.pathname
+        },
+        clearDataSearched: (state) => {
+            state.dataSearch = []
         }
     },
 });
 
-export const { loadData, notLoading, loading, notLoadData, dataFound } = dashboardSlice.actions;
+export const { loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched } = dashboardSlice.actions;

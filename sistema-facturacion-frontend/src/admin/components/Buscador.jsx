@@ -1,14 +1,36 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux";
-import { searchingData } from "../../store";
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { clearingWantedData, searchingData } from "../../store";
 
 
 
 export const Buscador = () => {
 
-    const [busqueda, setBusqueda] = useState('');
+    const { data } = useSelector( state => state.dashboard );
+    const [ haveData, setHaveData ] = useState(false);
 
+    const [busqueda, setBusqueda] = useState('');
     const dispatch = useDispatch();
+
+    useEffect( () => {
+
+        if( data.length > 1 ) {
+            setHaveData(true);
+        } else {
+            setHaveData(false);
+        }
+
+    }, [data] );
+
+    useEffect( () => {
+
+        if( busqueda.length < 1  ) {
+            dispatch(clearingWantedData());
+        }
+
+    }, [busqueda] );
+
+    if( !haveData ) return;
 
     const handleSearch = (e) => {
 

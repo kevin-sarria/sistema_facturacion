@@ -1,6 +1,16 @@
-export const Table = ({ data = [] }) => {
+import { useSelector } from "react-redux";
+
+
+
+export const Table = ({ datos = [] }) => {
+
+  const { data, dataSearch } = useSelector( state => state.dashboard )
   
-  
+  if( dataSearch.length >= 1 ) {
+    datos = dataSearch;
+  } else {
+    datos = data;
+  }
 
   const columnas = data.length > 0 ? Object.keys(data[0]) : [];
 
@@ -15,7 +25,7 @@ export const Table = ({ data = [] }) => {
         </tr>
       </thead>
       <tbody className="border border-spacing-2 text-center">
-        {data.map((objeto) => (
+        {datos.map((objeto) => (
           <tr key={objeto.id} className="even:bg-slate-200">
             {columnas.map((columna) => (
               <td key={columna} className='p-3 text-lg'>{objeto[columna]}</td>

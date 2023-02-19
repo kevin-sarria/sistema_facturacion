@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 export const Paginador = () => {
 
     const [ newData, setNewData ] = useState([]);
-
     const { data } = useSelector( state => state.dashboard );
+
+    // En el paginador falta un apartado, donde dependiendo de la respuesta del backend, este haga un dispatch a una funcion asincrona, la cual hara una nueva consulta  a la BD, trayendo nueva data dependiendo del offset que ya tenga, esto para que, si el volumen de informacion es de cientos o miles, no se tome tanto tiempo la aplicacion en la carga inicial.
 
     useEffect( () => {
         setNewData( data );

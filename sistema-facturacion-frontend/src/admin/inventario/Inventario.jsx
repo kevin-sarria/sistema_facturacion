@@ -68,7 +68,7 @@ export const Inventario = () => {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch(loadingData(data));
+    dispatch(loadingData());
   }, [] );
   
 

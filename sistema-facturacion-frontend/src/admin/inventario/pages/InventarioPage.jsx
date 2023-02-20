@@ -5,17 +5,8 @@ import { Buscador, Paginador, NuevoRegistro, Table, Alerta } from '../../compone
 
 export const InventarioPage = () => {
 
-  const [ newData, setNewData ] = useState([]);
-
   const { data, isLoading } = useSelector( state => state.dashboard );
 
-  useEffect( () => {
-    setNewData(data);
-  }, [isLoading] );
-
-  // newData.length < 1 || 
-
-  // Falta un apartado que, cuando la data este vacia, aparezca un mensaje para registrar nuevos datos
 
   if( isLoading ) {
     return <div className="m-auto custom-loader"></div>;
@@ -26,18 +17,13 @@ export const InventarioPage = () => {
 
       <Menu title='Inventario' />
 
-      {
-        newData.length < 1 ? <Alerta /> : <>
-        
-        <Buscador />
+      <Alerta />
 
-        <Table data={data} />
-  
-        <Paginador />
-        
-        </>
-
-      }
+      <Buscador />
+      
+      <Table data={data} />
+      
+      <Paginador />
 
       <NuevoRegistro link="/registrar-entrada" />
 

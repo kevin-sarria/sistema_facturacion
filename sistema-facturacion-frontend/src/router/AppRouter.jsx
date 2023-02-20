@@ -3,6 +3,7 @@ import { Dashboard } from '../admin/';
 import { useCheckAuth } from '../hooks';
 import { LoginPage, ForgotPassword } from '../auth';
 import { Inventario } from '../admin/inventario';
+import { Entradas } from '../admin/entradas';
 
 export const AppRouter = () => {
 
@@ -28,6 +29,7 @@ export const AppRouter = () => {
             <>
               <Route path="/" element={ <Dashboard /> } />
               <Route path="/inventario" element={ <Inventario /> } />
+              <Route path="/entradas" element={ <Entradas /> } />
 
               <Route path="/*" element={ <Navigate to='/' /> } />
             </>

@@ -4,9 +4,9 @@ import { DashboardPage } from './pages/DashboardPage';
 
 export const Dashboard = () => {
   return (
-    <div className='flex'>
+    <section className='flex'>
       <Navbar />
       <DashboardPage />
-    </div>
+    </section>
   )
 }

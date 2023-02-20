@@ -68,16 +68,16 @@ export const Inventario = () => {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch(loadingData());
+    dispatch(loadingData(data));
   }, [] );
   
 
   return (
     
-    <div className='flex h-screen lg:h-auto'>
+    <section className='flex h-screen lg:h-auto'>
       <Navbar />
       <InventarioPage />
-    </div>
+    </section>
 
   )
 }

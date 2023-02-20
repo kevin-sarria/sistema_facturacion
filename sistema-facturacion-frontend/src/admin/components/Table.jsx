@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 
-export const Table = ({ datos = [] }) => {
+export const Table = ({ datos = [], facturaLink = "", opciones = false }) => {
 
   const { data, dataSearch } = useSelector( state => state.dashboard )
+
+  if( facturaLink.length > 1 ) {
+    facturaLink += '/';
+  }
   
   if( dataSearch.length >= 1 ) {
     datos = dataSearch;
@@ -22,6 +27,15 @@ export const Table = ({ datos = [] }) => {
           {columnas.map((columna) => (
             <th key={columna} className='p-5 text-md uppercase font-bold'>{columna}</th>
           ))}
+
+          {
+            facturaLink.length > 1 && <th>Factura</th>
+          }
+
+          {
+            opciones && <th>Opciones</th>
+          }
+
         </tr>
       </thead>
       <tbody className="border border-spacing-2 text-center">
@@ -30,6 +44,21 @@ export const Table = ({ datos = [] }) => {
             {columnas.map((columna) => (
               <td key={columna} className='p-3 text-lg'>{objeto[columna]}</td>
             ))}
+
+            {
+              facturaLink.length > 1 && <td><Link to={facturaLink + objeto.id}> <img src="https://cdn.icon-icons.com/icons2/1504/PNG/96/applicationpdf_103614.png" alt="Icono PDf" className="w-12 mx-auto m-2" /> </Link></td>
+            }
+
+            {
+              opciones && 
+              <td>
+                <div className="flex justify-evenly">
+                  <Link className="text-amber-500 font-semibold" to={ `/editar-factura/` + objeto.id }>Editar</Link>
+                  <Link className="text-red-500 font-semibold" to={ `/eliminar-factura/` + objeto.id }>Eliminar</Link>
+                  </div>
+              </td>
+            }
+
           </tr>
         ))}
       </tbody>

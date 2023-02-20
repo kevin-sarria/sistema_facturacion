@@ -36,7 +36,7 @@ export const searchingData = (dataToSearch = "") => {
         if (dataNew.map( (item )=> item.nombre).includes(dataToSearch)) {
             return dispatch(dataFound(dataNew))
         } else {
-            return dispatch(notLoading({ error: true, msg: 'No se encontro ningun registro' }));
+            return dispatch(notLoading({ msg: 'No se encontro ningun registro', type: "info" }));
         }
 
     }

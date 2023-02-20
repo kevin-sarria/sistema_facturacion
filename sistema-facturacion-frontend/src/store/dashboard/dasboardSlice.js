@@ -37,6 +37,7 @@ export const dashboardSlice = createSlice({
         },
         clearDataSearched: (state) => {
             state.dataSearch = []
+            state.haveError = null;
         }
     },
 });

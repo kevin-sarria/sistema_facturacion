@@ -7,20 +7,9 @@ import { clearingWantedData, searchingData } from "../../store";
 export const Buscador = () => {
 
     const { data } = useSelector( state => state.dashboard );
-    const [ haveData, setHaveData ] = useState(false);
 
     const [busqueda, setBusqueda] = useState('');
     const dispatch = useDispatch();
-
-    useEffect( () => {
-
-        if( data.length > 1 ) {
-            setHaveData(true);
-        } else {
-            setHaveData(false);
-        }
-
-    }, [data] );
 
     useEffect( () => {
 
@@ -30,7 +19,7 @@ export const Buscador = () => {
 
     }, [busqueda] );
 
-    if( !haveData ) return;
+    if( !data ) return;
 
     const handleSearch = (e) => {
 

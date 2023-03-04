@@ -19,7 +19,7 @@ export const Buscador = () => {
 
     }, [busqueda] );
 
-    if( !data ) return;
+    if( data.length < 1 ) return;
 
     const handleSearch = (e) => {
 
@@ -39,7 +39,7 @@ export const Buscador = () => {
                     <label htmlFor="buscador" className="cursor-pointer">
 
                         <img
-                            src="https://cdn.icon-icons.com/icons2/3468/PNG/128/web_ui_interface_magnifying_glass_magnifier_find_search_icon_219794.png"
+                            src="/img/lupa.png"
                             alt="Icono buscador"
                             className="w-10 h-10"
                         />

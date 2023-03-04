@@ -29,11 +29,11 @@ export const Table = ({ datos = [], facturaLink = "", opciones = false }) => {
           ))}
 
           {
-            facturaLink.length > 1 && <th>Factura</th>
+            facturaLink.length > 1 && data.length > 1 && <th>FACTURA</th>
           }
 
           {
-            opciones && <th>Opciones</th>
+            opciones && data.length > 1 && <th>OPCIONES</th>
           }
 
         </tr>
@@ -46,13 +46,13 @@ export const Table = ({ datos = [], facturaLink = "", opciones = false }) => {
             ))}
 
             {
-              facturaLink.length > 1 && <td><Link to={facturaLink + objeto.id}> <img src="https://cdn.icon-icons.com/icons2/1504/PNG/96/applicationpdf_103614.png" alt="Icono PDf" className="w-12 mx-auto m-2" /> </Link></td>
+              facturaLink.length > 1 && <td><Link to={facturaLink + objeto.id}> <img src="public/img/documento-texto.png" alt="Icono PDf" className="w-12 mx-auto m-2" /> </Link></td>
             }
 
             {
               opciones && 
               <td>
-                <div className="flex justify-evenly">
+                <div className="flex justify-evenly gap-5">
                   <Link className="text-amber-500 font-semibold" to={ `/editar-factura/` + objeto.id }>Editar</Link>
                   <Link className="text-red-500 font-semibold" to={ `/eliminar-factura/` + objeto.id }>Eliminar</Link>
                   </div>

@@ -1,9 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
-import { Dashboard } from '../admin/';
 import { useCheckAuth } from '../hooks';
 import { LoginPage, ForgotPassword } from '../auth';
-import { Inventario } from '../admin/inventario';
-import { Entradas } from '../admin/entradas';
+import { Dashboard, Inventario, Entradas, RegistrarEntrada } from '../admin';
 
 export const AppRouter = () => {
 
@@ -30,6 +28,7 @@ export const AppRouter = () => {
               <Route path="/" element={ <Dashboard /> } />
               <Route path="/inventario" element={ <Inventario /> } />
               <Route path="/entradas" element={ <Entradas /> } />
+              <Route path="/registrar-entrada" element={ <RegistrarEntrada /> } />
 
               <Route path="/*" element={ <Navigate to='/' /> } />
             </>

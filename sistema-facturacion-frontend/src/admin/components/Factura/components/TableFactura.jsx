@@ -1,11 +1,11 @@
 
 
 
-export const TableFactura = ({ headers = [] }) => {
+export const TableFactura = ({ headers = ['Cantidad', 'Nombre', 'Valor Medida', 'Valor Unitario', 'Valor Total', 'Porcenaje Ganancia'], data = [] }) => {
 
     return (
 
-        <div className="flex overflow-auto mx-2 xl:mx-auto">
+        <section className="flex overflow-auto mx-2 xl:mx-auto my-20">
 
             <table className="w-full mx-auto mt-6 justify-center">
 
@@ -23,7 +23,7 @@ export const TableFactura = ({ headers = [] }) => {
 
             </table>
 
-        </div>
+        </section>
 
     )
 }

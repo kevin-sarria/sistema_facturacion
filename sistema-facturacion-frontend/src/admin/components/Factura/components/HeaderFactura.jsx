@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 
 const fecha = new Date();
@@ -5,7 +7,23 @@ const fechaOutput = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullY
 
 export const HeaderFactura = () => {
 
-    
+    const [ provider, setProvider ] = useState({ id: null, nit: '', nombre: '', numero_contacto: '', direccion: '' });
+
+    const dispatch = useDispatch();
+
+    const getProviders = () => {
+        
+    }
+
+    const findProvider = ( wordToFind = '' ) => {
+
+        if( wordToFind.length >= 2 ) {
+            
+            
+
+        }
+
+    }
 
     return (
         <>
@@ -22,7 +40,7 @@ export const HeaderFactura = () => {
                             <img src="public/img/lupa.png" alt="icono lupa" className="w-8 hover:cursor-pointer" />
                         </label>
 
-                        <input type="text" id="proovedor_old" className="outline-none" />
+                        <input type="text" id="proovedor_old" className="outline-none" onInput={ (e) => findProvider(e.target.value) } />
                     </div>
                 </div>
 

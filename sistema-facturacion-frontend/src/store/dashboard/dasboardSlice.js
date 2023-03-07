@@ -10,6 +10,12 @@ export const dashboardSlice = createSlice({
         haveError: null
     },
     reducers: {
+        pageBlank: ( state ) => {
+            state.data = [];
+            state.isLoading = false;
+            state.page = window.location.pathname;
+            state.haveError = null;
+        },
         loadData: (state, { payload }) => {
             state.data = payload,
             state.isLoading = false,
@@ -42,4 +48,4 @@ export const dashboardSlice = createSlice({
     },
 });
 
-export const { loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched } = dashboardSlice.actions;
+export const { pageBlank, loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched } = dashboardSlice.actions;

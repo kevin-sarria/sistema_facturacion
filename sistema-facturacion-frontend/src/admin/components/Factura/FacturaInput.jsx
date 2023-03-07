@@ -29,15 +29,13 @@ export const FacturaInput = () => {
 
 
     return (
-        <form className="w-4/5 mx-auto">
+        <form className="w-4/5 mx-auto" onSubmit={ e => e.preventDefault() }>
 
             <HeaderFactura />
 
             <TableFactura />
             
-            <NewProduct />            
-
-
+            <NewProduct />
             
 
             <section className="flex gap-2 justify-end">

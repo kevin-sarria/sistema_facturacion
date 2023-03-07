@@ -1,4 +1,4 @@
-import { clearDataSearched, dataFound, loadData, loading, notLoadData, notLoading } from "./";
+import { clearDataSearched, dataFound, loadData, loading, notLoadData, notLoading, pageBlank } from "./";
 
 export const loadingData = (data = []) => {
     return async (dispatch) => {
@@ -14,12 +14,8 @@ export const loadingData = (data = []) => {
 
 export const searchingData = (dataToSearch = "") => {
 
+    // Datos de prueba
     const dataNew = [
-        // { id: 1, nombre: 'Lapicero', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        // { id: 2, nombre: 'Cuaderno', cantidad: 22, valor_medida: 'paquete', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        // { id: 3, nombre: 'Borrador', cantidad: 22, valor_medida: 'paquete', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        // { id: 4, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        // Cosas de mas
         { id: 5, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 6, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 7, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
@@ -49,4 +45,12 @@ export const clearingWantedData = () => {
         dispatch(clearDataSearched());
     }
 
+}
+
+export const initNewPage = () => {
+    return (dispatch) =>  {
+
+        dispatch(pageBlank());
+
+    }
 }

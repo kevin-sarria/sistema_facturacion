@@ -27,6 +27,9 @@ export const dashboardSlice = createSlice({
             state.page = window.location.pathname,
             state.haveError = payload
         },
+        haveError: (state, { payload }) => {
+            state.haveError = payload;
+        },
         loading: (state) => {
             state.isLoading = true,
             state.haveError = null
@@ -44,8 +47,14 @@ export const dashboardSlice = createSlice({
         clearDataSearched: (state) => {
             state.dataSearch = []
             state.haveError = null;
-        }
+        },
+        getProviders: (state, {payload}) => {
+            state.data = { implementos: state.data, providers: payload, providerSelected: {} };
+        },
+        selectProvider: (state, {payload}) => {
+            state.data = { ...state.data, providerSelected: payload };
+        },
     },
 });
 
-export const { pageBlank, loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched } = dashboardSlice.actions;
+export const { pageBlank, loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched, getProviders, selectProvider, haveError } = dashboardSlice.actions;

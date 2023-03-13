@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Menu } from '../../'
 import { Buscador, Paginador, NuevoRegistro, Table, Alerta } from '../../components';
 
 export const InventarioPage = () => {
 
-  const { data, isLoading } = useSelector( state => state.dashboard );
+  const { isLoading } = useSelector( state => state.dashboard );
 
 
   if( isLoading ) {
@@ -21,7 +20,7 @@ export const InventarioPage = () => {
 
       <Buscador />
       
-      <Table data={data} />
+      <Table />
       
       <Paginador />
 

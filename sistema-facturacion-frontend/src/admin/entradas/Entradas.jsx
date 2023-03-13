@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import { loadingData } from "../../store";
+
 import { Navbar } from "../components"
 import { EntradasPage } from "./pages"
 

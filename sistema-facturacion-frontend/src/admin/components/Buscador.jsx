@@ -17,15 +17,16 @@ export const Buscador = () => {
             dispatch(clearingWantedData());
         }
 
-    }, [busqueda] );
+    }, [busqueda.trim()] );
 
+    // Evitar que se renderize el componente si no viene la data de la base de datos
     if( data.length < 1 ) return;
 
     const handleSearch = (e) => {
 
         e.preventDefault();
 
-        if (busqueda.length > 1) {
+        if (busqueda.trim().length > 1) {
             dispatch(searchingData(busqueda));
         }
     }

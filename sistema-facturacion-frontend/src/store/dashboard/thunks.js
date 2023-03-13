@@ -1,4 +1,4 @@
-import { clearDataSearched, dataFound, loadData, loading, notLoadData, notLoading, pageBlank } from "./";
+import { clearDataSearched, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider } from "./";
 
 export const loadingData = (data = []) => {
     return async (dispatch) => {
@@ -29,11 +29,11 @@ export const searchingData = (dataToSearch = "") => {
 
         dispatch(loading());
 
-        if (dataNew.map( (item )=> item.nombre).includes(dataToSearch)) {
-            return dispatch(dataFound(dataNew))
-        } else {
+        if ( dataNew.filter( item => item.nombre.toLowerCase().includes(dataToSearch)).length <= 1  ) {
             return dispatch(notLoading({ msg: 'No se encontro ningun registro', type: "info" }));
         }
+
+        return dispatch(dataFound(dataNew))
 
     }
 
@@ -47,10 +47,52 @@ export const clearingWantedData = () => {
 
 }
 
-export const initNewPage = () => {
+export const initingNewPage = () => {
     return (dispatch) =>  {
 
         dispatch(pageBlank());
 
     }
+}
+
+export const gettingProviders = () => {
+
+    return async( dispatch ) => {
+
+        dispatch( loading() );
+
+        const providers = [
+            { id: 1, nombre: 'Alphina', nit: '10298374', direccion: 'crr. 12 # 20 - 05', numero_contacto: '315 459 6109' },
+            { id: 2, nombre: 'Algarra', nit: '10298444', direccion: 'crr. 12 # 20 - 05', numero_contacto: '312 452 6120' },
+            { id: 3, nombre: 'Cacharreria Uriel', nit: '12298374', direccion: 'crr. 12 # 20 - 05', numero_contacto: '315 459 6109' }
+        ];
+
+        dispatch( getProviders(providers) );
+    }
+}
+
+export const settingSelectProvider = ( providerSelected = {} ) => {
+
+    return async( dispatch ) => {
+
+        dispatch( loading() );
+
+        if (providerSelected.length < 1) return dispatch( haveError({ msg: "No se han encontrado registros.", type: "info" }));
+
+        const providers = [
+            { id: 1, nombre: 'Alphina', nit: '10298374', direccion: 'crr. 12 # 20 - 05', numero_contacto: '315 459 6109' },
+            { id: 2, nombre: 'Algarra', nit: '10298444', direccion: 'crr. 12 # 20 - 05', numero_contacto: '312 452 6120' },
+            { id: 3, nombre: 'Cacharreria Uriel', nit: '12298374', direccion: 'crr. 12 # 20 - 05', numero_contacto: '315 459 6109' }
+        ];
+
+
+        // Preguntar a la BD si existe un proovedor con este id, en caso de no hacerlo, dar un error
+        const datos = providers.filter( provider => provider.id == providerSelected );
+
+        if( datos.length < 1 ) return dispatch(  haveError({ msg: "No se han encontrado registros.", type: "info" }));
+
+        dispatch( selectProvider(datos[0]) );
+
+    }
+
 }

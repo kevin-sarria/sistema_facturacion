@@ -54,7 +54,10 @@ export const dashboardSlice = createSlice({
         selectProvider: (state, {payload}) => {
             state.data = { ...state.data, providerSelected: payload };
         },
+        clearProvider: (state) => {
+            state.data = { ...state.data, providerSelected: {} };
+        },
     },
 });
 
-export const { pageBlank, loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched, getProviders, selectProvider, haveError } = dashboardSlice.actions;
+export const { pageBlank, loadData, notLoading, loading, notLoadData, dataFound, clearDataSearched, getProviders, selectProvider, clearProvider, haveError } = dashboardSlice.actions;

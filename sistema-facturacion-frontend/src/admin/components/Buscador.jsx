@@ -27,14 +27,14 @@ export const Buscador = () => {
         e.preventDefault();
 
         if (busqueda.trim().length > 1) {
-            dispatch(searchingData(busqueda));
+            dispatch(searchingData(busqueda.toLowerCase()));
         }
     }
 
     return (
         <div className="flex justify-center lg:justify-end w-full lg:w-10/12 mx-auto mt-10">
 
-            <form onSubmit={ (e) => handleSearch(e) }>
+            <form onSubmit={ () => handleSearch() }>
                 <div className="flex w-fit border border-blue-400 rounded-sm rigth p-1">
 
                     <label htmlFor="buscador" className="cursor-pointer">

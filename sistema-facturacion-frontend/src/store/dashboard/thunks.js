@@ -1,4 +1,4 @@
-import { clearDataSearched, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider } from "./";
+import { clearDataSearched, clearProvider, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider } from "./";
 
 export const loadingData = (data = []) => {
     return async (dispatch) => {
@@ -15,11 +15,15 @@ export const loadingData = (data = []) => {
 export const searchingData = (dataToSearch = "") => {
 
     // Datos de prueba
-    const dataNew = [
+    const testData = [
+        { id: 1, nombre: 'Lapicero', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
+        { id: 2, nombre: 'Cuaderno', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
+        { id: 3, nombre: 'Lapicero', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
+        { id: 4, nombre: 'Borrador', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 5, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 6, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        { id: 7, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
-        { id: 8, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
+        { id: 7, nombre: 'Cuaderno', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
+        { id: 8, nombre: 'Cuaderno', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 9, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 10, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
         { id: 11, nombre: 'Sacapuntas', cantidad: 22, valor_medida: 'unidad', precio_compra: 1200, porcentaje_ganancia: 30, precio_venta: 1700 },
@@ -29,9 +33,11 @@ export const searchingData = (dataToSearch = "") => {
 
         dispatch(loading());
 
-        if ( dataNew.filter( item => item.nombre.toLowerCase().includes(dataToSearch)).length <= 1  ) {
+        if ( testData.filter( item => item.nombre.toLowerCase().includes(dataToSearch)).length < 1  ) {
             return dispatch(notLoading({ msg: 'No se encontro ningun registro', type: "info" }));
         }
+
+        const dataNew = testData.filter( item => item.nombre.toLowerCase().includes(dataToSearch));
 
         return dispatch(dataFound(dataNew))
 
@@ -93,6 +99,14 @@ export const settingSelectProvider = ( providerSelected = {} ) => {
 
         dispatch( selectProvider(datos[0]) );
 
+    }
+
+}
+
+export const clearingSelectProvider = () => {
+
+    return async( dispatch ) => {
+        dispatch(clearProvider());
     }
 
 }

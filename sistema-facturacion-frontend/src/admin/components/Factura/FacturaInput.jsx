@@ -29,7 +29,7 @@ export const FacturaInput = () => {
 
 
     return (
-        <form className="w-4/5 mx-auto" onSubmit={ e => e.preventDefault() }>
+        <section className="w-4/5 mx-auto">
 
             <HeaderFactura />
 
@@ -43,6 +43,6 @@ export const FacturaInput = () => {
                 <button className="text-xl border border-green-500 hover:bg-green-500 rounded p-2 text-green-500 hover:text-white" onClick={save}>Guardar</button>
             </section>
 
-        </form>
+        </section>
     )
 }

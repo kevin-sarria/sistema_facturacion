@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
@@ -8,7 +9,16 @@ import { HeaderFactura, NewProduct, TableFactura } from "./components";
 
 export const FacturaInput = () => {
 
-    const [] = useState();
+    const [ rowsTable, setRowsTable ] = useState([]);
+
+    const { data } = useSelector(state => state.dashboard);
+    const implementos = data.implementos;
+
+    useEffect( () => {
+        if( implementos !== undefined ) {   
+            implementos.length > 0 ? setRowsTable(implementos) : '';
+        }
+    }, [data.implementos] );
 
 
     const navigate = useNavigate();
@@ -33,7 +43,7 @@ export const FacturaInput = () => {
 
             <HeaderFactura />
 
-            <TableFactura />
+            <TableFactura datos={rowsTable.length >= 1 ? rowsTable : []} />
             
             <NewProduct />
             

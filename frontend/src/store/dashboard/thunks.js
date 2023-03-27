@@ -1,4 +1,4 @@
-import { clearDataSearched, clearProvider, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider } from "./";
+import { clearDataSearched, clearProvider, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider, setNewImplement } from "./";
 
 export const loadingData = (data = []) => {
     return async (dispatch) => {
@@ -83,7 +83,7 @@ export const settingSelectProvider = ( providerSelected = {} ) => {
 
         dispatch( loading() );
 
-        if (providerSelected.length < 1) return dispatch( haveError({ msg: "No se han encontrado registros.", type: "info" }));
+        if (providerSelected.length < 1) return dispatch( haveError({ msg: "No se han encontrado registros.", type: "info" }) );
 
         const providers = [
             { id: 1, nombre: 'Alphina', nit: '10298374', direccion: 'crr. 12 # 20 - 05', numero_contacto: '315 459 6109' },
@@ -107,6 +107,18 @@ export const clearingSelectProvider = () => {
 
     return async( dispatch ) => {
         dispatch(clearProvider());
+    }
+
+}
+
+export const settingNewImplement = (implementos = {} ) => {
+
+    return async( dispatch ) => {
+
+        if( Object.entries(implementos).length < 1 ) return dispatch( haveError({ msg: "Ha ocurrido un error", type: "error" }) );
+
+        dispatch(setNewImplement(implementos));
+
     }
 
 }

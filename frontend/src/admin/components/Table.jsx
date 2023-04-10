@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -5,6 +6,10 @@ import { Link } from "react-router-dom";
 
 export const Table = ({ datos = [], facturaLink = "", opciones = false }) => {
 
+  useEffect( () => {
+    if( datos.length < 1 ) return;
+  }, [datos] );
+  
   const { data, dataSearch } = useSelector( state => state.dashboard )
 
   if( facturaLink.length > 1 ) {

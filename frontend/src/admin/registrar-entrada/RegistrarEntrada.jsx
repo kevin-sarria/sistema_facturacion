@@ -1,5 +1,6 @@
 import { Navbar } from '../components/Navbar';
 import { RegistrarEntradaPage } from './';
+import { FunctionsProvider } from './context';
 
 
 export const RegistrarEntrada = () => {
@@ -8,10 +9,11 @@ export const RegistrarEntrada = () => {
 
     return (
       <section className="flex h-screen lg:h-auto">
-          
-        <Navbar />
-  
-        <RegistrarEntradaPage />
+
+        <FunctionsProvider>
+          <Navbar />
+          <RegistrarEntradaPage />
+        </FunctionsProvider>
   
       </section>
     )

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 import { HeaderFactura, NewProduct, TableFactura } from "./components";
+import { pageBlank } from "../../../store";
 
 
 
 export const FacturaInput = () => {
 
     const [ rowsTable, setRowsTable ] = useState([]);
+
+    const dispatch = useDispatch();
 
     const { data } = useSelector(state => state.dashboard);
     const implementos = data.implementos;
@@ -25,21 +28,17 @@ export const FacturaInput = () => {
 
     const volver = (e) => {
         e.preventDefault();
-
+        dispatch( pageBlank() );
         navigate(-1);
     }
 
     const save = (e) => {
-
         e.preventDefault();
-
-
-
     }
 
 
     return (
-        <section className="w-4/5 mx-auto">
+        <section className="w-4/5 overflow-auto mx-auto">
 
             <HeaderFactura />
 

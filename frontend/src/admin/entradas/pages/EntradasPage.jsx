@@ -4,8 +4,7 @@ import { Alerta, Buscador, Menu, NuevoRegistro, Paginador, Table } from "../../c
 
 export const EntradasPage = () => {
 
-  const { isLoading } = useSelector( state => state.dashboard );
-
+  const { isLoading, data } = useSelector( state => state.dashboard );
 
   if( isLoading ) {
     return <div className="m-auto custom-loader"></div>;

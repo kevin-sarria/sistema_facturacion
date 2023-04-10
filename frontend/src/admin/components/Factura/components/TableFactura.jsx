@@ -1,6 +1,15 @@
-const headersDefault = ['Nombre', 'Cantidad', 'Valor Medida', 'Valor Unitario', 'Valor Total', 'Porcenaje Ganancia'];
+import { useContext } from "react";
+import { FucntionsContext } from "../../../registrar-entrada/context";
+
+const headersDefault = ['Nombre', 'Cantidad', 'Valor Medida', 'Valor Unitario', 'Valor Total', 'Porcenaje Ganancia', 'Opciones'];
 
 export const TableFactura = ({ headers = headersDefault, datos = [] }) => {
+
+    const { openModal } = useContext( FucntionsContext );
+
+    const click = (e) => {
+        console.log(e);
+    }
 
     function renderTableRows( data = datos ) {
         return data?.map((row, rowIndex) => (
@@ -8,6 +17,10 @@ export const TableFactura = ({ headers = headersDefault, datos = [] }) => {
             {Object.values(row)?.map((value, columnIndex) => (
               <td key={columnIndex} className='text-center text-lg border border-blue-400 break-words'>{value}</td>
             ))}
+            <td className="flex border border-blue-400">
+                <button className="m-2 p-2 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white rounded" onClick={click} data-id={rowIndex}>Editar</button>
+                <button className="m-2 p-2 border border-red-500 text-red-600 hover:bg-red-500 hover:text-white rounded">Eliminar</button>
+            </td>
           </tr>
         ));
       }

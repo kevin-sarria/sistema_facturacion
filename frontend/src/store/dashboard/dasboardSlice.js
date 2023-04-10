@@ -50,15 +50,19 @@ export const dashboardSlice = createSlice({
         },
         getProviders: (state, {payload}) => {
             state.data = { implementos: state.data, providers: payload, providerSelected: {} };
+            state.isLoading = false;
         },
         selectProvider: (state, {payload}) => {
             state.data = { ...state.data, providerSelected: payload };
+            state.isLoading = false;
         },
         clearProvider: (state) => {
             state.data = { ...state.data, providerSelected: {} };
+            state.isLoading = false;
         },
         setNewImplement: (state, {payload}) => {
             state.data = { ...state.data, implementos: [ ...state.data.implementos, payload ] };
+            state.isLoading = false;
         }
 
     },

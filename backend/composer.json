@@ -1,12 +1,13 @@
 {
-    "name": "estaduardo/backend",
-    "description": "Backend Api Para sistema de facturacion de la Papeleria Universal",
+    "name": "sarria/backend",
+    "description": "Backend hecho en php con MVC y Composer",
+    "type": "project",
     "autoload": {
         "psr-4": {
-            "Estaduardo\\Backend\\": "src/",
-            "Controllers\\": "./controllers",
-            "Model\\": "./models/",
-            "Classes\\": "./classes"
+            "MVC\\": "./",
+            "Model\\": "./model/",
+            "Controllers\\": "./controllers/",
+            "Classes\\": "./classes/"
         }
     },
     "authors": [
@@ -15,5 +16,9 @@
             "email": "reysabueso256@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "firebase/php-jwt": "^6.4",
+        "phpmailer/phpmailer": "^6.8",
+        "vlucas/phpdotenv": "^5.5"
+    }
 }

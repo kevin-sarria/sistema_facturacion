@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
-import { Alerta, Buscador, Menu, NuevoRegistro, Paginador, Table } from "../../components"
 
+import { Alerta } from '../../../components';
+import { Buscador, Menu, NuevoRegistro, Paginador, Table } from "../../components"
 
 export const EntradasPage = () => {
 
-  const { isLoading, data } = useSelector( state => state.dashboard );
+  const { isLoading } = useSelector( state => state.dashboard );
 
   if( isLoading ) {
     return <div className="m-auto custom-loader"></div>;

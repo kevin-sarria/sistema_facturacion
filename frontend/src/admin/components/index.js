@@ -5,4 +5,3 @@ export * from './Factura';
 export * from './Buscador';
 export * from './Paginador';
 export * from './NuevoRegistro';
-export * from './Alerta';

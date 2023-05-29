@@ -1,4 +1,5 @@
-import { Alerta, FacturaInput, Menu } from "../../components"
+import { Alerta } from "../../../components/Alerta"
+import { FacturaInput, Menu } from "../../components"
 
 
 export const RegistrarEntradaPage = () => {

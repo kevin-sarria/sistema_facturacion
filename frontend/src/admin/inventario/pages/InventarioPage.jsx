@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
-import { Menu } from '../../'
-import { Buscador, Paginador, NuevoRegistro, Table, Alerta } from '../../components';
+
+import { Menu } from '../../';
+import { Alerta } from '../../../components';
+import { Buscador, Paginador, NuevoRegistro, Table } from '../../components';
 
 export const InventarioPage = () => {
 

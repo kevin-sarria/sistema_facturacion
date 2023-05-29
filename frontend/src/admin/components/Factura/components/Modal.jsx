@@ -21,7 +21,7 @@ const formValidations = {
 
 export const Modal = () => {
 
-    const { nombre_producto, cantidad, valor_medida, valor_unitario, porcentaje_ganancia, onInputChange, nombre_productoValid, cantidadValid, valor_medidaValid, valor_unitarioValid, porcentaje_gananciaValid, onResetForm, isFormValid } = useForm(initialForm, formValidations);
+    const { nombre_producto, cantidad, valor_medida, valor_unitario, porcentaje_ganancia, onInputChange, nombre_productoValid, cantidadValid, valor_medidaValid, valor_unitarioValid, porcentaje_gananciaValid, onResetForm } = useForm(initialForm, formValidations);
 
     const { isModalActive } = useContext( FucntionsContext );
 

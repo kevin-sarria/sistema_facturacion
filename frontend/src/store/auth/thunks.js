@@ -1,4 +1,4 @@
-import { checkingCredentials, login, logout } from "./"
+import { checkingCredentials, authError, login, logout, clearAuthErrors } from "./"
 
 
 export const checkingAuthentication = ( email, password ) => {
@@ -6,71 +6,62 @@ export const checkingAuthentication = ( email, password ) => {
 
         dispatch( checkingCredentials() );
 
+        const url = import.meta.env.VITE_API_URL;
+
+        const formData = new FormData();
+        formData.append('correo', email);
+        formData.append('password', password);
+
+        const respuestaServer = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'default',
+            body: formData
+        }).then( response => response.json() );
+
+        if( respuestaServer?.error ) {
+            dispatch( authError({ msg: respuestaServer.error[0], type: "error" }) );
+
+            setTimeout( () => {
+                dispatch( clearAuthErrors() );
+            }, [500] );
+
+            return;
+        }
+
+        localStorage.setItem('token', respuestaServer.token);
+
+        return dispatch( login(respuestaServer) );
+
     }
 }
 
-export const startGoogleSingIn = () => {
-    
-    return async(dispatch) => {
-
-        dispatch( checkingCredentials() );
-
-        const result = await singInWithGoogle();
-
-        if( !result.ok ) return dispatch(logout( result ));
-
-        dispatch( login( result ) );
-
-    }
-
-}
-
-
-export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
-
-    return async(dispatch) => {
-
-        dispatch( checkingCredentials() );
-
-        const { ok, uid, photoURL, errorMessage } = await registerUserWithEmailPassword({ email, password, displayName });
-
-        if( !ok ) return dispatch( logout({errorMessage}) );
-
-        dispatch(login({ uid, displayName, email, photoURL }));
-
-    }
-
-}
-
-
-export const startLoginWithEmailPassword = ({ email, password }) => {
+export const renewingToken = () => {
 
     return async( dispatch ) => {
 
-        dispatch( checkingCredentials() );
+        const url = import.meta.env.VITE_API_URL + '/revalidar-token';
+        const oldToken = localStorage.getItem('token') ?? '';
 
-        const { uid, displayName, photoURL, ok, errorMessage } = await loginWithEmailPassword({ email, password });
+        const respuestaServer = await fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Authorization': `Bearer ${oldToken}`
+            }
+        }).then( response => response.json() );
 
-        if( !ok ) return dispatch( logout({errorMessage}) );
+        if( respuestaServer?.error ) {
+            dispatch( authError({ msg: respuestaServer.error[0], type: "error" }) );
 
-        dispatch(login({ uid, displayName, email, ok, photoURL }));
+            setTimeout( () => {
+                dispatch( clearAuthErrors() );
+            }, [500] );
 
-    }
+            return;
+        }
 
-
-}
-
-
-
-export const startLogout = () => {
-
-    return async(dispatch) => {
-
-        await logoutFirebase();
-
-        dispatch( clearNotesLogout() );
-
-        dispatch( logout() );
+        return localStorage.setItem('token', respuestaServer.newToken);
 
     }
 

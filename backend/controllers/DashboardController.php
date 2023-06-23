@@ -23,13 +23,13 @@ class DashboardController {
 
         $infoToken = $token->returnInfoToken();
 
-        
+        $existeUsuario = Usuario::where('correo', $infoToken->email_user);
 
-        $inventario = new Inventario;
-
-        $inventario = $inventario::all();
-
-        debbuguear($inventario);
+        if( $existeUsuario ) {
+            $inventario = new Inventario;
+            $inventario = $inventario::all();
+            echo json_encode($inventario);
+        }
 
     }
 

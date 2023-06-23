@@ -1,11 +1,11 @@
 import { clearDataSearched, clearProvider, dataFound, getProviders, haveError, loadData, loading, notLoadData, notLoading, pageBlank, selectProvider, setNewImplement } from "./";
 
-export const loadingData = (data = []) => {
+export const loadingData = (seccion = '') => {
     return async (dispatch) => {
 
         dispatch(loading());
 
-        if (data.length < 1) return dispatch(notLoadData({ msg: "No se han encontrado registros, por favor ingrese nuevos.", type: "info" }));
+        if(data.length < 1) return dispatch(notLoadData({ msg: "No se han encontrado registros, por favor ingrese nuevos.", type: "info" }));
 
         dispatch(loadData(data));
 

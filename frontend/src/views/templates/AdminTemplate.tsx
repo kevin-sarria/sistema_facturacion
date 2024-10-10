@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { LinkStyleInterface } from "../../interfaces";
-import { Avatar, Box, Flex, Menu, MenuButton, MenuItem, MenuList, Stack, Button, Img, Text, Divider, Container } from '@chakra-ui/react';
+import { Avatar, Box, Flex, Menu, MenuButton, MenuItem, MenuList, Stack, Button, Img, Text, Container } from '@chakra-ui/react';
 import { Link } from "../components";
 import { FaAngleLeft, FaArrowRightFromBracket, FaBars, FaBox, FaFileImport, FaFileInvoiceDollar, FaPenToSquare, FaRegNewspaper } from "react-icons/fa6";
 import { useMenu } from "./hooks";
@@ -32,7 +32,6 @@ export const AdminTemplate = () => {
     <Box
         w='100vw'
         h='100vh'
-        overflowY='hidden'
         overflowX='hidden'
     >
         
@@ -173,6 +172,7 @@ export const AdminTemplate = () => {
                 width={ isOpen ? 'calc(100% - 240px)' : '100%'}
                 flexGrow={2}
                 transition={transitionAside}
+                overflowY='auto'
             >
                 <header
                     style={{
@@ -232,6 +232,7 @@ export const AdminTemplate = () => {
                 <Container
                     maxW='6xl'
                     paddingTop={10}
+                    overflowY='auto'
                 >
                     <Outlet />
                 </Container>

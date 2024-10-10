@@ -1,5 +1,5 @@
-import { Box, Button, Flex, FormControl, FormLabel, Link as ChakraLink, Heading, Input, Stack } from "@chakra-ui/react"
-import { Link as ReactRouterLink } from "react-router-dom"
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack } from "@chakra-ui/react"
+import { Link } from "../components"
 
 export const Login = () => {
   return (
@@ -43,23 +43,26 @@ export const Login = () => {
                 <Stack
                     mb={5}
                 >
-                    <ChakraLink
-                        as={ReactRouterLink}
-                        to='/register'
-                        color='blue.900'
-                        fontWeight='semibold'
+
+                    <Link
+                        to="/register"
+                        sx={{
+                            color: 'blue.900',
+                            fontWeight: 'semibold',
+                        }}
                     >
                         Aun no tienes cuenta?, Registrate
-                    </ChakraLink>
+                    </Link>
 
-                    <ChakraLink
-                        as={ReactRouterLink}
-                        to='/forgot-password'
-                        color='blue.900'
-                        fontWeight='semibold'
+                    <Link
+                        to="/forgot-password"
+                        sx={{
+                            color: 'blue.900',
+                            fontWeight: 'semibold',
+                        }}
                     >
                         Olvidaste tu password?, Recupera tu cuenta!
-                    </ChakraLink>
+                    </Link>
                 </Stack>
 
                 <Button

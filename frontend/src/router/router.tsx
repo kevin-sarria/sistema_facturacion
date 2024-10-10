@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AuthTemplate, Login, Register } from "../views";
+import { AdminTemplate, AuthTemplate, Dashboard, ForgotPassword, Inventory, Login, Register, Sales, Shopping } from "../views";
 
 export const router = createBrowserRouter([
     {
@@ -13,7 +13,33 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword />
             }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <AdminTemplate />,
+        children: [
+            {
+                index: true,
+                element: <Dashboard />
+            },
+            {
+                path: '/dashboard/inventario',
+                element: <Inventory />
+            },
+            {
+                path: '/dashboard/ventas',
+                element: <Sales />
+            },
+            {
+                path: '/dashboard/compras',
+                element: <Shopping />
+            },
         ]
     }
 ]);

@@ -1,13 +1,13 @@
 import { Box, Grid, GridItem, Image } from "@chakra-ui/react"
 import { Outlet, useLocation } from "react-router-dom"
-
-import loginImage from '../../../public/img/login-image.jpg';
-import registerImage from '../../../public/img/register-image.jpg';
+import { useTemplateImage } from "./hooks";
 
 export const AuthTemplate = () => {
 
     const { pathname } = useLocation();
-    const image = pathname == '/' ? loginImage : registerImage;
+    // const image = pathname == '/' ? loginImage : registerImage;
+
+    const { image } = useTemplateImage({ pathname });
 
   return (
     <Box
@@ -16,11 +16,11 @@ export const AuthTemplate = () => {
         }}
     >
         <Grid
-            templateColumns={{base: 'unset', sm: 'repeat(2, 1fr)'}}
+            templateColumns={{base: 'unset', md: 'repeat(2, 1fr)'}}
             h='100%'
         >
             <GridItem
-                display={{ base: 'none', sm: 'block' }}
+                display={{ base: 'none', md: 'block' }}
                 h='100vh'
                 filter='auto'
                 brightness='60%'
@@ -32,7 +32,9 @@ export const AuthTemplate = () => {
                 />
             </GridItem>
 
-            <GridItem>
+            <GridItem
+                minW='80'
+            >
                 <Outlet />
             </GridItem>
 

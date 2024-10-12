@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { LinkStyleInterface } from "../../interfaces";
-import { Avatar, Box, Flex, Menu, MenuButton, MenuItem, MenuList, Stack, Button, Img, Text, Container } from '@chakra-ui/react';
+import { Avatar, Box, Flex, Menu, MenuButton, MenuItem, MenuList, Stack, Button, Img, Text, Container, useMediaQuery } from '@chakra-ui/react';
 import { Link } from "../components";
 import { FaAngleLeft, FaArrowRightFromBracket, FaBars, FaBox, FaFileImport, FaFileInvoiceDollar, FaPenToSquare, FaRegNewspaper } from "react-icons/fa6";
 import { useMenu } from "./hooks";
@@ -27,6 +27,21 @@ const transitionAside: string = '300ms all ease-in-out';
 export const AdminTemplate = () => {
 
     const { isOpen, handleMenuToggle } = useMenu();
+    const [ biggerThanTabletSize ] = useMediaQuery('(min-width: 768px)');
+
+    const asideWidth = biggerThanTabletSize ? '240px' : '100%';
+
+    const marginLeftAside = () => {
+        if( biggerThanTabletSize && !isOpen ) { // SI es mas grande la pantalla que el size de tablet y el drawer NO esta abierto
+            return '-240px';
+        } else if( biggerThanTabletSize && isOpen ) { // SI es mas grande la pantalla que el size de tablet y el drawer SI esta abierto
+            return '0px';
+        } else if( !biggerThanTabletSize && !isOpen ) { // Si NO es mas grande la pantalla que el size de tablet y el drawer NO esta abierto
+            return '-100vw';
+        } else { // SI es mas grande la pantalla que el size de tablet y el drawer SI esta abierto
+            return '0px';
+        }
+    }
 
   return (
     <Box
@@ -44,10 +59,9 @@ export const AdminTemplate = () => {
             <aside
                 style={{
                     height: '100%',
-                    width: '240px',
+                    width: asideWidth,
                     borderRight: `${borderAside}`,
-                    marginLeft: ` ${isOpen ? '0px' : '-240px'}`,
-                    flexGrow: 2,
+                    marginLeft: ` ${marginLeftAside()}`,
                     transition: `${transitionAside}`
                 }}
             >
@@ -169,8 +183,8 @@ export const AdminTemplate = () => {
 
             {/* Start Main Content */}
             <Box
-                width={ isOpen ? 'calc(100% - 240px)' : '100%'}
-                flexGrow={2}
+                width={ isOpen ? `calc(100% - ${asideWidth})` : '100%'}
+                
                 transition={transitionAside}
                 overflowY='auto'
             >

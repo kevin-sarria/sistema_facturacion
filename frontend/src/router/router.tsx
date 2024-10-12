@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AdminTemplate, AuthTemplate, Dashboard, ForgotPassword, Inventory, Login, Register, Sales, Shopping } from "../views";
+import { AdminTemplate, AuthTemplate, Dashboard, ForgotPassword, Inventory, Login, Register, Sales, Purchase, AddPurchase } from "../views";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +38,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/compras',
-                element: <Shopping />
+                element: <Purchase />
+            },
+            {
+                path: '/dashboard/compras/crear',
+                element: <AddPurchase />
             },
         ]
     }

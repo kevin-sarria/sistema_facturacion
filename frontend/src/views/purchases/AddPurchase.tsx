@@ -1,11 +1,13 @@
 import { Box, Grid, GridItem, FormControl, FormLabel, Input, useMediaQuery, Heading, Button, Text, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Flex } from '@chakra-ui/react';
 import { TableProduct } from './components';
+import { useModal } from '../hooks';
 
 const borderStyle = '1px solid #4299e1';
 
 export const AddPurchase = () => {
 
     const [ desktopSize ] = useMediaQuery('(min-width: 768px)');
+    const { Modal, addPurchase } = useModal();
 
   return (
     <Box>
@@ -134,10 +136,12 @@ export const AddPurchase = () => {
             </Box>
 
             <Box>
-                <Button variant='outline' colorScheme='blue'>Nuevo Producto</Button>
+                <Button variant='outline' colorScheme='blue' onClick={addPurchase}>Nuevo Producto</Button>
             </Box>
 
         </Flex>
+
+        <Modal />
 
     </Box>
   )

@@ -1,12 +1,16 @@
-import { Box, Grid, GridItem, Image } from "@chakra-ui/react"
 import { Outlet, useLocation } from "react-router-dom"
 import { useTemplateImage } from "./hooks";
 
+import { Box, Grid, GridItem, Image } from "@chakra-ui/react"
+import { useAuthStore } from "../../stores";
+
 export const AuthTemplate = () => {
 
-    const { pathname } = useLocation();
-    // const image = pathname == '/' ? loginImage : registerImage;
+    const isLoading = useAuthStore( state => state.isLoading );
 
+    console.log({isLoading});
+
+    const { pathname } = useLocation();
     const { image } = useTemplateImage({ pathname });
 
   return (

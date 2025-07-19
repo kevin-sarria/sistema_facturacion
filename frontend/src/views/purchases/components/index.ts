@@ -1,2 +1,2 @@
-export * from './AddPurchaseForm';
+export * from './AddProductForm';
 export * from './TableProduct';

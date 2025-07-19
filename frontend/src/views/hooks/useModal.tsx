@@ -1,14 +1,16 @@
 import { ReactNode, useState } from "react";
-import { ModalBody, Modal as ModalChakra, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
-import { ModalProps } from "../../interfaces";
+import { ModalBody, Modal as ModalChakra, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import { AddProductForm } from "../purchases";
 
 export const useModal = () => {
 
     const [ isModalOpen, setIsModalOpen ] = useState<boolean>(false);
+    const [ titleModal, setTitleModal ] = useState<string>('Title Here!');
     const [ contentModal, setContentModal ] = useState<null | ReactNode>(null);
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setTitleModal('Title Here!');
         setContentModal(null);
     }
 
@@ -18,10 +20,12 @@ export const useModal = () => {
 
     // Forms Functions
     const addPurchase = () => {
-
+        setContentModal(<AddProductForm />);
+        setTitleModal('Agregar Producto');
+        setIsModalOpen(true);
     }
 
-    const Modal = ({ title = 'Title Here!' }: ModalProps) => {
+    const Modal = () => {
 
         return (
             <ModalChakra
@@ -30,7 +34,8 @@ export const useModal = () => {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>{title}</ModalHeader>
+                    <ModalHeader>{titleModal}</ModalHeader>
+                    <ModalCloseButton />
                     <ModalBody>
                         { contentModal }
                     </ModalBody>
@@ -44,6 +49,7 @@ export const useModal = () => {
     isModalOpen,
     openModal,
     closeModal,
-    Modal
+    addPurchase,
+    Modal,
   }
 }

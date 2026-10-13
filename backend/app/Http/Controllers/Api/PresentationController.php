@@ -4,93 +4,89 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Presentation;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PresentationController extends Controller
 {
-    public function index()
+    public function index(Request $request): JsonResponse
     {
-        $presentations = Presentation::paginate(10);
+        if ($request->boolean('all')) {
+            return response()->json([
+                'success' => true,
+                'data' => Presentation::orderBy('name', 'asc')->get()
+            ]);
+        }
+
+        $limit = (int) $request->query('limit', 15);
+        $presentations = Presentation::orderBy('name', 'asc')->paginate($limit);
+
         return response()->json([
             'success' => true,
             'data' => $presentations
-        ], 200);
+        ]);
     }
 
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
         $presentation = Presentation::find($id);
         if (!$presentation) {
             return response()->json([
                 'success' => false,
-                'message' => 'Presentation not found'
+                'message' => 'Presentación no encontrada.'
             ], 404);
         }
 
         return response()->json([
             'success' => true,
             'data' => $presentation
-        ], 200);
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        try {
-            $validator = $request->validate([
-                'name' => 'required|string|max:255|unique:presentation,name',
-            ]);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:presentations,name',
+        ]);
 
-            $presentation = Presentation::create($validator);
+        $presentation = Presentation::create($validated);
 
-            return response()->json([
-                'success' => true,
-                'data' => $presentation
-            ], 201);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error al crear la presentación: ' . $th->getMessage()
-            ], 400);
-        }
+        return response()->json([
+            'success' => true,
+            'data' => $presentation
+        ], 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
         $presentation = Presentation::find($id);
 
         if (!$presentation) {
             return response()->json([
                 'success' => false,
-                'message' => 'Presentation not found'
+                'message' => 'Presentación no encontrada.'
             ], 404);
         }
 
-        try {
-            $validator = $request->validate([
-                'name' => 'required|string|max:255|unique:presentation,name,' . $id,
-            ]);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:presentations,name,' . $id,
+        ]);
 
-            $presentation->update($validator);
+        $presentation->update($validated);
 
-            return response()->json([
-                'success' => true,
-                'data' => $presentation
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error al actualizar la presentación: ' . $th->getMessage()
-            ], 400);
-        }
+        return response()->json([
+            'success' => true,
+            'data' => $presentation
+        ]);
     }
 
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
         $presentation = Presentation::find($id);
         if (!$presentation) {
             return response()->json([
                 'success' => false,
-                'message' => 'Presentation not found'
+                'message' => 'Presentación no encontrada.'
             ], 404);
         }
 
@@ -98,7 +94,7 @@ class PresentationController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Presentation deleted successfully'
-        ], 200);
+            'message' => 'Presentación eliminada.'
+        ]);
     }
 }

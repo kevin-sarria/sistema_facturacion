@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presentation extends Model
 {
-
     use HasFactory;
-
-    protected $table = 'presentation';
 
     protected $fillable = [
         'name',
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
